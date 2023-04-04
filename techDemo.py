@@ -13,7 +13,7 @@ win.title('Learning with Bunny')
 label = Label(win, text = 'Learning with Bunny', font = 'Arial 30')
 # Specify the layout 
 label.pack(padx = 70, pady = 70)
-
+'''
 # Create a text space, you can enter multiple lines
 textbox = Text(win, height = 5, font = 'Arial 17')
 textbox.pack(padx = 10, pady = 10)
@@ -59,9 +59,9 @@ buttonFrame.pack(fill = 'x')
 # anotherbtn = Button(win, text = 'TEST')
 # anotherbtn.place(x = 200, y = 200, height = 100, width = 100)
 # win.mainloop()
-
+'''
 #######################################################################
-
+'''
 # TEST: TEXT BOX AND CLOSE WINDOW
 class MyGUI(object):
     def __init__(self):
@@ -112,7 +112,7 @@ class MyGUI(object):
         self.textbox.delete('1.0', END)
 MyGUI()
 
-
+'''
 def rgbString(red, green, blue):
     return "#%02x%02x%02x" % (red, green, blue)
 
@@ -124,7 +124,7 @@ canvas.pack()
 canvas.place(anchor = 'c', relx = 0.5, rely = 0.5)
 
 # Create an object of tkinter ImageTk: Bunny
-img = Image.open('bunnylogo.png')
+img = Image.open('image/bunnylogo.png')
 img_resize = img.resize((200, 300), Image.LANCZOS)
 new_image = ImageTk.PhotoImage(img_resize)
 
