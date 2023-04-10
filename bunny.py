@@ -50,6 +50,8 @@ def mainScreen():
     for widgets in win.winfo_children():
         widgets.destroy()
 
+    bunny.background_draw()
+
     log_in = Button(win, text='Log In', height=1, width=10,
                     font=('Klee', 20, 'bold'),
                     command=Username_log_in_input)
@@ -574,13 +576,12 @@ def random_abcd(multiple_number):
                         bg='#76D7EA',
                         anchor='w')
         list_button.append(button)
-        current = i
         if i == correct_letter:
-            list_button[i].config(command=lambda: change_color_button(
-                list_button[current], 'green'))
+            list_button[i].config(command=lambda button=list_button[i], color='green': change_color_button(
+                button, color))
         else:
-            list_button[i].config(command=lambda: change_color_button(
-                list_button[current], 'red'))
+            list_button[i].config(command=lambda button=list_button[i], color='red': change_color_button(
+                button, color))
 
     list_button[0].place(x=120, y=310)
     list_button[1].place(x=120, y=390)
@@ -692,7 +693,8 @@ class Closing():
             # Save progress before quitting
             win.destroy()
 
+
             # mixer.music.stop()
 mainScreen()
-# Closing()
 win.mainloop()
+# Closing()
