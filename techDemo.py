@@ -21,7 +21,7 @@ textbox.pack(padx = 10, pady = 10)
 # Receive a single-line text string from the user
 # myEntry = Entry(win, width = 100, font = 'Arial 17')
 # myEntry.pack()
-
+'''
 button = Button(win, text = 'Log In', font = 'Arial 18')
 button.pack(padx = 10, pady = 10)
 
@@ -59,7 +59,7 @@ buttonFrame.pack(fill = 'x')
 # anotherbtn = Button(win, text = 'TEST')
 # anotherbtn.place(x = 200, y = 200, height = 100, width = 100)
 # win.mainloop()
-'''
+
 #######################################################################
 '''
 # TEST: TEXT BOX AND CLOSE WINDOW
@@ -117,7 +117,7 @@ def rgbString(red, green, blue):
     return "#%02x%02x%02x" % (red, green, blue)
 
 ######################################################################
-
+'''
 # TEST: IMPORT IMAGE
 canvas = Canvas(win, width = 800, height = 800)
 canvas.pack()
@@ -150,5 +150,5 @@ canvas.create_image(10, 300, anchor = 'nw', image = new_image)
 
 canvas.create_text(100, 130, anchor = 'nw', text = 'Learning with Bunny',
                     font = 'Consolas 60 bold')
-
+'''
 win.mainloop()
