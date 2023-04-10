@@ -1,0 +1,57 @@
+{
+    "Job": 
+    {
+        "Employee": "Someone who is paid to work for someone else",
+        "Employer": "A person or organization that employs people",
+        "Occupation": "Formal way to say 'job'",
+        "Resign": "To leave a job",
+        "Overtime": "Working more than your contracted hours",
+        "Shift": "The time worked in a job that is not normal hours",
+        "Commute": "The journey to and from work",
+        "Candidate": "The people applying for a job vacancy",
+        "Employment": "Paid work",
+        "Start-up": "A new business"
+    },
+
+    "Tourism":
+    {
+        "Craft markets" : "Stalls where goods made by the local people are sold",
+        "Get around": "Get from place to place",
+        "Scenic views": "Lovely scenes",
+        "Out of season": "Outside the most popular holiday period",
+        "Long-haul flights": "Long distance flights",
+        "Lush rainforests": "Luxuriant equatorial forests",
+        "Accommodation" : "A room or building in which you stay during holidays or live",
+        "All holiday": "A time after you lost your job",
+        "Self-catering": "A holiday deal where meals are not provided",
+        "Charter flight": "A cheap regular flight"
+    },
+
+    "Environment":
+    {
+        "Fauna": "The animals of a particular region or habitat",
+        "Flora": "The plants of a particular region or habitat",
+        "Local wildlife": "The wildlife to be found in a particular area",
+        "Diverse": "Varied and very different from one another",
+        "Biodiversity": "The variety of animal and plant life found in a particular place",
+        "Habitat": "The natural home or environment of an animal, plant or other organism",
+        "To adapt": "To change or adjust in response to new conditions",
+        "To evolve": "Change or develop gradually",
+        "Thrive": "To grow and develop well or quickly",
+        "Nocturnal": "Active at night"
+    },
+
+    "Education":
+    {
+        "Literacy": "The ability to read and write",
+        "Kindergarten": "Pre-school education",
+        "Lecture": "A formal talk on a subject",
+        "Principal": "A person in charge of a school",
+        "Thesis": "Research compiled on a particular subject",
+        "Pedagogy": "The way of teaching including the instructional method that is used",
+        "Tuition": "The fees required to be able to study a course",
+        "Assignment": "Work given to a student as part of their studies",
+        "Curriculum": "The school program that schools aim to teach students",
+        "Gap year": "Taking a year out between high school and university"
+    }
+}
