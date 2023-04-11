@@ -5,6 +5,7 @@ from PIL import ImageTk, Image
 import json
 import random
 import copy
+import time as Time
 
 # Initialize, set the geometry and title of the app's window
 win = Tk()
@@ -21,13 +22,25 @@ win.config(background='#76D7EA')
 # mixer.music.set_volume(0.1)
 # mixer.music.play(-1)
 
-flashcard_score_get = 0
 user_data = {}
 user = None
+topic = None
 topic_choose = {}
 word_have = []
 
-box1, box2, box3, box4, box5 = [], [], [], [], []
+# box - 0 review everytime
+# box - 1 review after 2 time
+# box - 2 review after 5 times
+# box - 3 review after 10 times
+# box - 4 review after 20 times
+bunny_wordlist_box = {}
+user_wordlist_box = {}
+bunny_wordlist_box_temp = {}
+user_wordlist_box_temp = {}
+user_checkin_count = {}
+MCQ_count = {}
+times = [0, 2, 5, 10, 20]
+
 #########################################################################
 
 
@@ -104,22 +117,25 @@ class Username_sign_up_input():
         self.user_name_label = Label(win, text='Username:',
                                      font=('Klee', 20, 'bold'),
                                      bg='#76D7EA')
+        self.user_name_label.place(x=220, y=200)
 
         self.user_name = Entry(win, font=('Klee', 16, 'bold'))
-
-        self.user_password_label = Label(win, text='Password:',
-                                         font=('Klee', 20, 'bold'),
-                                         bg='#76D7EA')
+        self.user_name.place(x=350, y=200, height=60, width=300)
 
         self.user_password_label = Label(win, text='Password:',
                                          font=('Klee', 20, 'bold'),
                                          bg='#76D7EA')
         self.user_password_label.place(x=220, y=300)
 
+        self.user_password = Entry(win, font=('Klee', 16, 'bold'), show='*')
+
+        self.user_password.place(x=350, y=300, height=60, width=300)
+
         self.password = Checkbutton(win, text='Show password',
                                     font=('Klee', 16, 'bold'),
                                     bg='#76D7EA',
                                     command=self.show_password)
+        self.password.place(x=350, y=370)
 
         self.cancel_button = Button(win, text='Cancel',
                                     height=1,
@@ -158,8 +174,19 @@ class Username_sign_up_input():
         else:
             user_data[self.user_name.get()] = self.user_password.get()
             write_json('user_data.json', user_data)
-
+            global user, bunny_wordlist_box, user_wordlist_box, user_checkin_count, user_wordlist_box_temp, bunny_wordlist_box_temp
             user = self.user_name.get()
+            user_checkin_count = load_json('user_checkin_count.json')
+            bunny_wordlist_box = load_json('bunny_wordlist_box.json')
+            user_wordlist_box = load_json('user_wordlist_box.json')
+            bunny_wordlist_box[user] = {}
+            user_wordlist_box[user] = {}
+            user_checkin_count[user] = 0
+            write_json('bunny_wordlist_box.json', bunny_wordlist_box)
+            write_json('user_wordlist_box.json', user_wordlist_box)
+            write_json('user_checkin_count.json', user_checkin_count)
+            user_wordlist_box_temp = copy.deepcopy(user_wordlist_box)
+            bunny_wordlist_box_temp = copy.deepcopy(bunny_wordlist_box)
             after_enter_sign_up_screen()
 
 
@@ -212,10 +239,18 @@ class Username_log_in_input():
             self.user_password.config(show='*')
 
     def check_valid_user_input(self):
+        global user_data
         user_data = load_json('user_data.json')
 
         if self.user_name.get() in user_data and self.user_password.get() == user_data[self.user_name.get()]:
+            global user, user_checkin_count, bunny_wordlist_box, user_wordlist_box, user_wordlist_box_temp, bunny_wordlist_box_temp
             user = self.user_name.get()
+            user_checkin_count = load_json('user_checkin_count.json')
+            bunny_wordlist_box = load_json('bunny_wordlist_box.json')
+            user_wordlist_box = load_json('user_wordlist_box.json')
+            user_checkin_count[user] = (user_checkin_count[user] + 1) % 20
+            user_wordlist_box_temp = copy.deepcopy(user_wordlist_box)
+            bunny_wordlist_box_temp = copy.deepcopy(bunny_wordlist_box)
             after_enter_log_in_screen()
 
         else:
@@ -412,17 +447,27 @@ def add_words():
     my_word_list.place(x=550, y=50)
 
 
-def practice_option_bunny(topic):
+def practice_option_bunny(Topic):
     bunny.bunny_ask()
 
-    global topic_choose, word_have, flashcard_score_get
+    global topic_choose, word_have, flashcard_score_get, bunny_wordlist_box, user, topic
+    topic = Topic
     topic_choose = {}
     word_have = []
     flashcard_score_get = 0
     topic_choose = load_json('bunny_word_list.json')[topic]
 
-    for word in topic_choose:
-        word_have.append(word)
+    if topic not in bunny_wordlist_box[user]:
+        bunny_wordlist_box[user][topic] = {}
+        for word in topic_choose:
+            bunny_wordlist_box[user][topic][word] = 0
+
+    for word in bunny_wordlist_box[user][topic]:
+        if times[bunny_wordlist_box[user][topic][word]] <= user_checkin_count[user]:
+            word_have.append(word)
+
+    for word in word_have:
+        MCQ_count[word] = 0
 
     option_ask = Label(win, text='Do you want to practice by multiple \n choice quesions or flashcards?',
                        font=('Klee', 30, 'bold'),
@@ -436,7 +481,7 @@ def practice_option_bunny(topic):
                         height=3, width=13,
                         font=('Klee', 25, 'bold'),
                         bg='#76D7EA',
-                        command=lambda: flashcard_display(0))
+                        command=screen_before_display_flashcard)
     show_list_box = Button(win, text='Show word list',
                            height=2, width=13,
                            font=('Klee', 25, 'bold'),
@@ -536,9 +581,6 @@ def multiple_question(word, multiple_number):
 
     random_abcd(multiple_number)
 
-    if multiple_number != len(word_have) - 1:
-        next_button(lambda: multiple_display((multiple_number + 1)))
-
     exit_button(topic_choice_sign_up)
 
 
@@ -577,11 +619,11 @@ def random_abcd(multiple_number):
                         anchor='w')
         list_button.append(button)
         if i == correct_letter:
-            list_button[i].config(command=lambda button=list_button[i], color='green': change_color_button(
-                button, color))
+            list_button[i].config(command=lambda button=list_button[i], color='green', list=list_button, num=multiple_number: change_color_button(
+                button, color, list, num))
         else:
-            list_button[i].config(command=lambda button=list_button[i], color='red': change_color_button(
-                button, color))
+            list_button[i].config(command=lambda button=list_button[i], color='red', list=list_button, num=multiple_number: change_color_button(
+                button, color, list, num))
 
     list_button[0].place(x=120, y=310)
     list_button[1].place(x=120, y=390)
@@ -589,15 +631,54 @@ def random_abcd(multiple_number):
     list_button[3].place(x=120, y=550)
 
 
-def change_color_button(button, color):
+def change_color_button(button, color, button_list, multiple_number):
     button.config(fg=color)
+    for Button in button_list:
+        if Button != button:
+            Button.config(state=DISABLED)
+    global word_have, bunny_wordlist_box, user, topic
+    if MCQ_count[word_have[multiple_number]] == 0:
+        MCQ_count[word_have[multiple_number]] = 1
+        if color == 'green':
+            box = bunny_wordlist_box[user][topic][word_have[multiple_number]]
+            if box < 4:
+                bunny_wordlist_box[user][topic][word_have[multiple_number]] += 1
+        else:
+            box = bunny_wordlist_box[user][topic][word_have[multiple_number]]
+            if box > 0:
+                bunny_wordlist_box[user][topic][word_have[multiple_number]] -= 1
+    if multiple_number != len(word_have) - 1:
+        next_button(lambda: multiple_display((multiple_number + 1)))
 
 #########################################################################
+
+
+def screen_before_display_flashcard():
+    for widgets in win.winfo_children():
+        widgets.destroy()
+    if len(word_have) != 0:
+        option_ask = Label(win, text='Today, you have ' + str(len(word_have)) + ' words to review',
+                           font=('Klee', 30, 'bold'),
+                           bg='#76D7EA')
+        option_ask.place(x=180, y=100)
+        next_button(lambda: flashcard_display(0))
+    else:
+        option_ask = Label(win, text='Today, you have no word to review. Do you want to review all of the words again?',
+                           font=('Klee', 30, 'bold'),
+                           bg='#76D7EA')
+        option_ask.place(x=180, y=100)
+        next_button(lambda: flashcard_display(0))
 
 
 def flashcard_display(flashcard_number):
     for widgets in win.winfo_children():
         widgets.destroy()
+
+    global word_have, topic_choose
+
+    if len(word_have) == 0:
+        for word in topic_choose:
+            word_have.append(word)
 
     flashcard_frame_word(word_have[flashcard_number], flashcard_number)
 
@@ -618,7 +699,7 @@ def flashcard_frame_word(word, flashcard_number):
     back_flashcard_number = flashcard_number - 1
     if back_flashcard_number <= 0:
         back_flashcard_number = 0
-    back_button(lambda: flashcard_display(back_flashcard_number))
+    # back_button(lambda: flashcard_display(back_flashcard_number))
 
     exit_button(topic_choice_log_in)
 
@@ -642,18 +723,24 @@ def flashcard_frame_definition(word, flashcard_number):
     back_flashcard_number = flashcard_number - 1
     if back_flashcard_number <= 0:
         back_flashcard_number = 0
-    back_button(lambda: flashcard_frame_word(
-        word_have[back_flashcard_number], back_flashcard_number))
+    # back_button(lambda: flashcard_frame_word(
+    #     word_have[back_flashcard_number], back_flashcard_number))
 
     exit_button(topic_choice_log_in)
 
 
 def flashcard_score(flashcard_number):
+    global bunny_wordlist_box, user, topic, word_have
     if (messagebox.askyesno(title='Next?', message='Are you sure you know this word?')):
-        global flashcard_score_get
-        flashcard_score_get += 1
-        next_flashcard_number = (flashcard_number + 1) % len(word_have)
-        flashcard_display(next_flashcard_number)
+        time = bunny_wordlist_box[user][topic][word_have[flashcard_number]]
+        if time < 4:
+            bunny_wordlist_box[user][topic][word_have[flashcard_number]] += 1
+    else:
+        time = bunny_wordlist_box[user][topic][word_have[flashcard_number]]
+        if time > 0:
+            bunny_wordlist_box[user][topic][word_have[flashcard_number]] -= 1
+    next_flashcard_number = (flashcard_number + 1) % len(word_have)
+    flashcard_display(next_flashcard_number)
 
 
 def show_word_number(flashcard_number):
@@ -688,13 +775,20 @@ class Closing():
         win.mainloop()
 
     def on_closing(self):
+        global bunny_wordlist_box, user_wordlist_box, user_checkin_count, bunny_wordlist_box_temp, user_wordlist_box_temp
         # Message box asks the users if they want to quit
         if messagebox.askyesno(title='Quit?', message='Do you want to save your progress before quitting?'):
-            # Save progress before quitting
-            win.destroy()
+            write_json('bunny_wordlist_box.json', bunny_wordlist_box)
+            write_json('user_wordlist_box.json', user_wordlist_box)
+            write_json('user_checkin_count.json', user_checkin_count)
 
+        else:
+            write_json('bunny_wordlist_box.json', bunny_wordlist_box_temp)
+            write_json('user_wordlist_box.json', user_wordlist_box_temp)
+            write_json('user_checkin_count.json', user_checkin_count)
+        # Time.sleep(.5)
+        win.destroy()
 
-            # mixer.music.stop()
+        # mixer.music.stop()
 mainScreen()
-win.mainloop()
-# Closing()
+Closing()
