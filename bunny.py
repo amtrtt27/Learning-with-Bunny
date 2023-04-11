@@ -65,16 +65,17 @@ def mainScreen():
 
     bunny.background_draw()
 
-    log_in = Button(win, text='Log In', height=1, width=10,
-                    font=('Klee', 20, 'bold'),
-                    command=Username_log_in_input)
-    log_in.place(x=300, y=400)
-
-    sign_up = Button(win, text='Sign Up',
-                     height=1, width=10,
-                     font=('Klee', 20, 'bold'),
-                     command=Username_sign_up_input)
-    sign_up.place(x=500, y=400)
+    log_in = Button(win, text = 'Log In', height = 1, width = 10,
+                    font = ('Klee', 20, 'bold'),
+                    command = Username_log_in_input)
+    
+    sign_up = Button(win, text = 'Sign Up',
+                     height = 1, width = 10,
+                     font = ('Klee', 20, 'bold'),
+                     command = Username_sign_up_input)
+    
+    log_in.place(x = 300, y = 400)
+    sign_up.place(x = 500, y = 400)
 
 
 class Draw_bunny():
@@ -82,17 +83,18 @@ class Draw_bunny():
         pass
 
     def background_draw(self):
-        self.label = Label(win, text='Learning With Bunny',
-                           font=('Klee', 60, 'bold'),
-                           bg='#76D7EA')
-        self.label.pack(padx=50, pady=70)
-
+        self.label = Label(win, text = 'Learning With Bunny',
+                           font = ('Klee', 60, 'bold'),
+                           bg = '#76D7EA')
+        
         self.img = Image.open('image/bunnylogo.png')
         self.img_resize = self.img.resize((200, 300), Image.LANCZOS)
         self.new_image = ImageTk.PhotoImage(self.img_resize)
-        self.image_Label = Label(win, image=self.new_image, bg='#76D7EA')
+        self.image_Label = Label(win, image = self.new_image, bg = '#76D7EA')
         self.image_Label.image = self.new_image
-        self.image_Label.place(relx=0.3, rely=0.55, anchor='e')
+        
+        self.label.pack(padx = 50, pady = 70)
+        self.image_Label.place(relx = 0.3, rely = 0.55, anchor = 'e')
 
     def bunny_ask(self):
         for widgets in win.winfo_children():
@@ -101,9 +103,9 @@ class Draw_bunny():
         self.img = Image.open('image/bunnylogo.png')
         self.img_resize = self.img.resize((150, 200), Image.LANCZOS)
         self.new_image = ImageTk.PhotoImage(self.img_resize)
-        self.image_Label = Label(win, image=self.new_image, bg='#76D7EA')
+        self.image_Label = Label(win, image = self.new_image, bg = '#76D7EA')
         self.image_Label.image = self.new_image
-        self.image_Label.place(relx=0.2, rely=0.25, anchor='e')
+        self.image_Label.place(relx = 0.2, rely = 0.25, anchor = 'e')
 
 
 bunny = Draw_bunny()
@@ -114,54 +116,48 @@ class Username_sign_up_input():
         for widgets in win.winfo_children():
             widgets.destroy()
 
-        self.user_name_label = Label(win, text='Username:',
-                                     font=('Klee', 20, 'bold'),
-                                     bg='#76D7EA')
-        self.user_name_label.place(x=220, y=200)
+        self.user_name_label = Label(win, text = 'Username:',
+                                     font = ('Klee', 20, 'bold'),
+                                     bg = '#76D7EA')
+        
+        self.user_name = Entry(win, font = ('Klee', 16, 'bold'))
 
-        self.user_name = Entry(win, font=('Klee', 16, 'bold'))
-        self.user_name.place(x=350, y=200, height=60, width=300)
+        self.user_password_label = Label(win, text = 'Password:',
+                                         font = ('Klee', 20, 'bold'),
+                                         bg = '#76D7EA')
 
-        self.user_password_label = Label(win, text='Password:',
-                                         font=('Klee', 20, 'bold'),
-                                         bg='#76D7EA')
-        self.user_password_label.place(x=220, y=300)
+        self.user_password = Entry(win, font = ('Klee', 16, 'bold'), show = '*')
 
-        self.user_password = Entry(win, font=('Klee', 16, 'bold'), show='*')
+        self.password = Checkbutton(win, text = 'Show password',
+                                    font = ('Klee', 16, 'bold'),
+                                    bg = '#76D7EA',
+                                    command = self.show_password)
 
-        self.user_password.place(x=350, y=300, height=60, width=300)
+        self.cancel_button = Button(win, text = 'Cancel',
+                                    height = 1,
+                                    width = 10,
+                                    font = ('Klee', 16, 'bold'),
+                                    command = mainScreen)
 
-        self.password = Checkbutton(win, text='Show password',
-                                    font=('Klee', 16, 'bold'),
-                                    bg='#76D7EA',
-                                    command=self.show_password)
-        self.password.place(x=350, y=370)
+        self.enter_button = Button(win, text = 'Enter',
+                                   height = 1,
+                                   width = 10,
+                                   font = ('Klee', 16, 'bold'),
+                                   command = self.save_new_user_data)
 
-        self.cancel_button = Button(win, text='Cancel',
-                                    height=1,
-                                    width=10,
-                                    font=('Klee', 16, 'bold'),
-                                    command=mainScreen)
-
-        self.enter_button = Button(win, text='Enter',
-                                   height=1,
-                                   width=10,
-                                   font=('Klee', 16, 'bold'),
-                                   command=self.save_new_user_data)
-
-        self.user_name_label.place(x=220, y=200)
-        self.user_name.place(x=350, y=200, height=60, width=300)
-        self.user_password_label.place(x=220, y=300)
-        self.user_password.place(x=350, y=300, height=60, width=300)
-        self.password.place(x=350, y=370)
-        self.cancel_button.place(x=150, y=450)
-        self.enter_button.place(x=550, y=450)
+        self.user_name_label.place(x = 220, y = 200)
+        self.user_name.place(x = 350, y = 200, height = 60, width = 300)
+        self.user_password_label.place(x = 220, y = 300)
+        self.user_password.place(x = 350, y = 300, height = 60, width = 300)
+        self.password.place(x = 350, y = 370)
+        self.cancel_button.place(x = 150, y = 450)
+        self.enter_button.place(x = 550, y = 450)
 
     def show_password(self):
         if self.user_password.cget('show') == '*':
-            self.user_password.config(show='')
+            self.user_password.config(show = '')
         else:
-            self.user_password.config(show='*')
+            self.user_password.config(show = '*')
 
     def save_new_user_data(self):
         user_data = load_json('user_data.json')
@@ -174,19 +170,25 @@ class Username_sign_up_input():
         else:
             user_data[self.user_name.get()] = self.user_password.get()
             write_json('user_data.json', user_data)
+
             global user, bunny_wordlist_box, user_wordlist_box, user_checkin_count, user_wordlist_box_temp, bunny_wordlist_box_temp
             user = self.user_name.get()
+
             user_checkin_count = load_json('user_checkin_count.json')
             bunny_wordlist_box = load_json('bunny_wordlist_box.json')
             user_wordlist_box = load_json('user_wordlist_box.json')
+
             bunny_wordlist_box[user] = {}
             user_wordlist_box[user] = {}
             user_checkin_count[user] = 0
+
             write_json('bunny_wordlist_box.json', bunny_wordlist_box)
             write_json('user_wordlist_box.json', user_wordlist_box)
             write_json('user_checkin_count.json', user_checkin_count)
+
             user_wordlist_box_temp = copy.deepcopy(user_wordlist_box)
             bunny_wordlist_box_temp = copy.deepcopy(bunny_wordlist_box)
+
             after_enter_sign_up_screen()
 
 
@@ -195,42 +197,42 @@ class Username_log_in_input():
         for widgets in win.winfo_children():
             widgets.destroy()
 
-        self.user_name_label = Label(win, text='Username:',
-                                     font=('Klee', 20, 'bold'),
-                                     bg='#76D7EA')
+        self.user_name_label = Label(win, text = 'Username:',
+                                     font = ('Klee', 20, 'bold'),
+                                     bg = '#76D7EA')
 
-        self.user_name = Entry(win, font=('Klee', 16, 'bold'))
+        self.user_name = Entry(win, font = ('Klee', 16, 'bold'))
 
-        self.user_password_label = Label(win, text='Password:',
-                                         font=('Klee', 20, 'bold'),
-                                         bg='#76D7EA')
+        self.user_password_label = Label(win, text = 'Password:',
+                                         font = ('Klee', 20, 'bold'),
+                                         bg = '#76D7EA')
 
-        self.user_password = Entry(win, font=('Klee', 16, 'bold'), show='*')
+        self.user_password = Entry(win, font = ('Klee', 16, 'bold'), show = '*')
 
-        self.password = Checkbutton(win, text='Show password',
-                                    font=('Klee', 16, 'bold'),
-                                    bg='#76D7EA',
-                                    command=self.show_password)
+        self.password = Checkbutton(win, text = 'Show password',
+                                    font = ('Klee', 16, 'bold'),
+                                    bg = '#76D7EA',
+                                    command = self.show_password)
 
-        self.cancel_button = Button(win, text='Cancel',
-                                    height=1,
-                                    width=10,
-                                    font=('Klee', 16, 'bold'),
-                                    command=mainScreen)
+        self.cancel_button = Button(win, text = 'Cancel',
+                                    height = 1,
+                                    width = 10,
+                                    font = ('Klee', 16, 'bold'),
+                                    command = mainScreen)
 
-        self.enter_button = Button(win, text='Enter',
-                                   height=1,
-                                   width=10,
-                                   font=('Klee', 16, 'bold'),
-                                   command=self.check_valid_user_input)
+        self.enter_button = Button(win, text = 'Enter',
+                                   height = 1,
+                                   width = 10,
+                                   font = ('Klee', 16, 'bold'),
+                                   command = self.check_valid_user_input)
 
-        self.user_name_label.place(x=220, y=200)
-        self.user_name.place(x=350, y=200, height=60, width=300)
-        self.user_password_label.place(x=220, y=300)
-        self.user_password.place(x=350, y=300, height=60, width=300)
-        self.password.place(x=350, y=370)
-        self.cancel_button.place(x=150, y=450)
-        self.enter_button.place(x=550, y=450)
+        self.user_name_label.place(x = 220, y = 200)
+        self.user_name.place(x = 350, y = 200, height = 60, width = 300)
+        self.user_password_label.place(x = 220, y = 300)
+        self.user_password.place(x = 350, y = 300, height = 60, width = 300)
+        self.password.place(x = 350, y = 370)
+        self.cancel_button.place(x = 150, y = 450)
+        self.enter_button.place(x = 550, y = 450)
 
     def show_password(self):
         if self.user_password.cget('show') == '*':
@@ -245,10 +247,13 @@ class Username_log_in_input():
         if self.user_name.get() in user_data and self.user_password.get() == user_data[self.user_name.get()]:
             global user, user_checkin_count, bunny_wordlist_box, user_wordlist_box, user_wordlist_box_temp, bunny_wordlist_box_temp
             user = self.user_name.get()
+
             user_checkin_count = load_json('user_checkin_count.json')
             bunny_wordlist_box = load_json('bunny_wordlist_box.json')
             user_wordlist_box = load_json('user_wordlist_box.json')
+
             user_checkin_count[user] = (user_checkin_count[user] + 1) % 20
+
             user_wordlist_box_temp = copy.deepcopy(user_wordlist_box)
             bunny_wordlist_box_temp = copy.deepcopy(bunny_wordlist_box)
             after_enter_log_in_screen()
@@ -261,7 +266,7 @@ class Username_log_in_input():
 
 
 def warning_message(s):
-    return messagebox.askretrycancel(title='Warning Error', message=s)
+    return messagebox.askretrycancel(title = 'Warning Error', message = s)
 
 #########################################################################
 
@@ -272,54 +277,59 @@ def after_enter_sign_up_screen():
 
     bunny.background_draw()
 
-    practice_or_not = Label(win, text='''Do you want to use Bunny's wordlist \n or create your own?''',
-                            font=('Klee', 30, 'bold'),
-                            bg='#76D7EA')
-    practice_or_not.place(x=240, y=250)
+    practice_or_not = Label(win, text = '''Do you want to use Bunny's wordlist \n or create your own?''',
+                            font = ('Klee', 30, 'bold'),
+                            bg = '#76D7EA')
+    
+    bunny_wordlist_button = Button(win, text = "Bunny's wordlist", height = 1,
+                                   width = 12,
+                                   font = ('Klee', 16, 'bold'),
+                                   bg = '#76D7EA',
+                                   command = topic_choice_sign_up)
 
-    bunny_wordlist_button = Button(win, text="Bunny's wordlist", height=1,
-                                   width=12,
-                                   font=('Klee', 16, 'bold'),
-                                   bg='#76D7EA',
-                                   command=topic_choice_sign_up)
-    bunny_wordlist_button.place(x=300, y=450)
-
-    restore_my_dataset = Button(win, text='My wordlist ', height=1,
-                                width=12,
-                                font=('Klee', 16, 'bold'),
-                                bg='#76D7EA',
-                                command=add_words)
-    restore_my_dataset.place(x=500, y=450)
+    restore_my_dataset = Button(win, text = 'My wordlist ', heigh = 1,
+                                width = 12,
+                                font = ('Klee', 16, 'bold'),
+                                bg = '#76D7EA',
+                                command = add_words)
+    
+    practice_or_not.place(x = 240, y = 250)
+    bunny_wordlist_button.place(x = 300, y = 450)
+    restore_my_dataset.place(x = 500, y = 450)
 
 
 def topic_choice_sign_up():
     bunny.bunny_ask()
 
-    topic_ask = Label(win, text='Choose your topic!!!',
-                      font=('Klee', 50, 'bold'),
-                      bg='#76D7EA')
-    button_1 = Button(win, text='Job', height=3, width=10,
-                      font=('Klee', 25, 'bold'),
-                      bg='#76D7EA',
-                      command=lambda: practice_option_bunny('Job'))
-    button_2 = Button(win, text='Tourism', height=3, width=10,
-                      font=('Klee', 25, 'bold'),
-                      bg='#76D7EA',
-                      command=lambda: practice_option_bunny('Tourism'))
-    button_3 = Button(win, text='Environment', height=3, width=10,
-                      font=('Klee', 25, 'bold'),
-                      bg='#76D7EA',
-                      command=lambda: practice_option_bunny('Environment'))
-    button_4 = Button(win, text='Education', height=3, width=10,
-                      font=('Klee', 25, 'bold'),
-                      bg='#76D7EA',
-                      command=lambda: practice_option_bunny('Education'))
+    topic_ask = Label(win, text = 'Choose your topic!!!',
+                      font = ('Klee', 50, 'bold'),
+                      bg = '#76D7EA')
 
-    topic_ask.place(x=240, y=100)
-    button_1.place(x=120, y=310)
-    button_2.place(x=420, y=310)
-    button_3.place(x=120, y=480)
-    button_4.place(x=420, y=480)
+    button_1 = Button(win, text = 'Job', height = 3, width = 10,
+                      font = ('Klee', 25, 'bold'),
+                      bg = '#76D7EA',
+                      command = lambda: practice_option_bunny('Job'))
+
+    button_2 = Button(win, text = 'Tourism', height = 3, width = 10,
+                      font = ('Klee', 25, 'bold'),
+                      bg = '#76D7EA',
+                      command = lambda: practice_option_bunny('Tourism'))
+    
+    button_3 = Button(win, text = 'Environment', height = 3, width = 10,
+                      font = ('Klee', 25, 'bold'),
+                      bg = '#76D7EA',
+                      command = lambda: practice_option_bunny('Environment'))
+    
+    button_4 = Button(win, text = 'Education', height = 3, width = 10,
+                      font = ('Klee', 25, 'bold'),
+                      bg = '#76D7EA',
+                      command = lambda: practice_option_bunny('Education'))
+
+    topic_ask.place(x = 240, y = 100)
+    button_1.place(x = 120, y = 310)
+    button_2.place(x = 420, y = 310)
+    button_3.place(x = 120, y = 480)
+    button_4.place(x = 420, y = 480)
 
     back_button(after_enter_sign_up_screen)
 
@@ -327,55 +337,66 @@ def topic_choice_sign_up():
 
 
 def after_enter_log_in_screen():
+
     for widgets in win.winfo_children():
         widgets.destroy()
 
     bunny.background_draw()
 
-    bunny_wordlist_button = Button(win, text="Bunny's wordlist", height=1,
-                                   width=12,
-                                   font=('Klee', 16, 'bold'),
-                                   bg='#76D7EA',
-                                   command=topic_choice_log_in)
-    bunny_wordlist_button.place(x=300, y=450)
+    create_or_bunny = Label(win, text = "Do you want to use \n Bunny's wordlist or yours?",
+                            font = ('Klee', 30, 'bold'),
+                            bg = '#76D7EA')
 
-    restore_my_dataset = Button(win, text='My wordlist ', height=1,
-                                width=12,
-                                font=('Klee', 16, 'bold'),
-                                bg='#76D7EA',
-                                command=new_or_old_practice)
-    restore_my_dataset.place(x=500, y=450)
+    bunny_wordlist_button = Button(win, text = "Bunny's wordlist", height = 1,
+                                   width = 12,
+                                   font = ('Klee', 16, 'bold'),
+                                   bg = '#76D7EA',
+                                   command = topic_choice_log_in)
+    
+
+    restore_my_dataset = Button(win, text = 'My wordlist ', height = 1,
+                                width = 12,
+                                font = ('Klee', 16, 'bold'),
+                                bg = '#76D7EA',
+                                command = new_or_old_practice)
+    
+    create_or_bunny.place(x = 270, y = 250)
+    bunny_wordlist_button.place(x = 300, y = 450)
+    restore_my_dataset.place(x = 500, y = 450)
 
 
 def topic_choice_log_in():
     bunny.bunny_ask()
 
-    topic_ask = Label(win, text='Choose your topic!!!',
-                      font=('Klee', 50, 'bold'),
-                      bg='#76D7EA')
+    topic_ask = Label(win, text = 'Choose your topic!!!',
+                      font = ('Klee', 50, 'bold'),
+                      bg = '#76D7EA')
 
-    button_1 = Button(win, text='Job', height=3, width=10,
-                      font=('Klee', 25, 'bold'),
-                      bg='#76D7EA',
-                      command=lambda: practice_option_bunny('Job'))
-    button_2 = Button(win, text='Tourism', height=3, width=10,
-                      font=('Klee', 25, 'bold'),
-                      bg='#76D7EA',
-                      command=lambda: practice_option_bunny('Tourism'))
-    button_3 = Button(win, text='Environment', height=3, width=10,
-                      font=('Klee', 25, 'bold'),
-                      bg='#76D7EA',
-                      command=lambda: practice_option_bunny('Environment'))
-    button_4 = Button(win, text='Education', height=3, width=10,
-                      font=('Klee', 25, 'bold'),
-                      bg='#76D7EA',
-                      command=lambda: practice_option_bunny('Education'))
+    button_1 = Button(win, text = 'Job', height = 3, width = 10,
+                      font = ('Klee', 25, 'bold'),
+                      bg = '#76D7EA',
+                      command = lambda: practice_option_bunny('Job'))
 
-    topic_ask.place(x=240, y=100)
-    button_1.place(x=120, y=310)
-    button_2.place(x=420, y=310)
-    button_3.place(x=120, y=480)
-    button_4.place(x=420, y=480)
+    button_2 = Button(win, text = 'Tourism', height = 3, width = 10,
+                      font = ('Klee', 25, 'bold'),
+                      bg = '#76D7EA',
+                      command = lambda: practice_option_bunny('Tourism'))
+
+    button_3 = Button(win, text = 'Environment', height = 3, width = 10,
+                      font = ('Klee', 25, 'bold'),
+                      bg = '#76D7EA',
+                      command = lambda: practice_option_bunny('Environment'))
+
+    button_4 = Button(win, text = 'Education', height = 3, width = 10,
+                      font = ('Klee', 25, 'bold'),
+                      bg = '#76D7EA',
+                      command = lambda: practice_option_bunny('Education'))
+
+    topic_ask.place(x = 240, y = 100)
+    button_1.place(x = 120, y = 310)
+    button_2.place(x = 420, y = 310)
+    button_3.place(x = 120, y = 480)
+    button_4.place(x = 420, y = 480)
 
     back_button(after_enter_log_in_screen)
 
@@ -385,24 +406,26 @@ def new_or_old_practice():
         widgets.destroy()
 
     bunny.background_draw()
-    new_or_old_practice = Label(win, text='''Do you want to keep practicing \n or add new words?''',
-                                font=('Klee', 30, 'bold'),
-                                bg='#76D7EA')
-    new_or_old_practice.place(x=240, y=250)
 
-    keep_practice_button = Button(win, text='Keep practicing', height=1,
-                                  width=12,
-                                  font=('Klee', 16, 'bold'),
-                                  bg='#76D7EA',
-                                  command=practice_option_mywordlist)
-    keep_practice_button.place(x=300, y=450)
+    new_or_old_practice = Label(win, text = '''Do you want to keep practicing \n or add new words?''',
+                                font = ('Klee', 30, 'bold'),
+                                bg = '#76D7EA')
 
-    add_new_words = Button(win, text='Add new words ', height=1,
-                           width=12,
-                           font=('Klee', 16, 'bold'),
-                           bg='#76D7EA',
-                           command=add_words)
-    add_new_words.place(x=500, y=450)
+    keep_practice_button = Button(win, text = 'Keep practicing', height = 1,
+                                  width = 12,
+                                  font = ('Klee', 16, 'bold'),
+                                  bg = '#76D7EA',
+                                  command = practice_option_mywordlist)
+
+    add_new_words = Button(win, text = 'Add new words ', height = 1,
+                           width = 12,
+                           font = ('Klee', 16, 'bold'),
+                           bg = '#76D7EA',
+                           command = add_words)
+    
+    new_or_old_practice.place(x = 240, y = 250)
+    keep_practice_button.place(x = 300, y = 450)
+    add_new_words.place(x = 500, y = 450)
 
     back_button(after_enter_log_in_screen)
 
@@ -412,39 +435,48 @@ def new_or_old_practice():
 def add_words():
     for widgets in win.winfo_children():
         widgets.destroy()
-    word = Label(win, text='Word:',
-                 font=('Klee', 20, 'bold'),
-                 bg='#76D7EA')
-    word.place(x=100, y=200)
 
-    definition = Label(win, text='Definition:',
-                       font=('Klee', 20, 'bold'),
-                       bg='#76D7EA')
-    definition.place(x=100, y=300)
+    word = Label(win, text = 'Word:',
+                 font = ('Klee', 20, 'bold'),
+                 bg = '#76D7EA')
+    
+    definition = Label(win, text = 'Definition:',
+                       font = ('Klee', 20, 'bold'),
+                       bg = '#76D7EA')
+    
+    word_input = Entry(win, font = ('Klee', 16, 'bold'))
+    
+    definition_input = Entry(win, font = ('Klee', 16, 'bold'))
+    
+    save_button = Button(win, text = 'Save',
+                         height = 1,
+                         width = 12,
+                         font = ('Klee', 16, 'bold'),
+                         command = lambda: save_word_into_wordlist(word_input.get(), definition_input.get()))
+    
+    start_practice = Button(win, text = 'Start to practice',
+                            height = 1,
+                            width = 12,
+                            font = ('Klee', 16, 'bold'),
+                            command = practice_option_mywordlist)
+    
+    my_word_list = Button(win, text = 'My word list',
+                          height = 1,
+                          width = 12,
+                          font = ('Klee', 16, 'bold'))
+    
+    word.place(x = 100, y = 200)
+    definition.place(x = 100, y = 300)
+    word_input.place(x = 220, y = 200, height = 60, width = 400)
+    definition_input.place(x = 220, y = 300, height = 200, width = 400)
+    save_button.place(x = 150, y = 550)
+    start_practice.place(x = 450, y = 550)
+    my_word_list.place(x = 550, y = 50)
 
-    word_input = Entry(win, font=('Klee', 16, 'bold'))
-    word_input.place(x=220, y=200, height=60, width=400)
 
-    definition_input = Text(win, font=('Klee', 16, 'bold'))
-    definition_input.place(x=220, y=300, height=200, width=400)
-
-    save_button = Button(win, text='Save',
-                         height=1,
-                         width=12,
-                         font=('Klee', 16, 'bold'))
-    save_button.place(x=150, y=550)
-
-    start_practice = Button(win, text='Start to practice',
-                            height=1,
-                            width=12,
-                            font=('Klee', 16, 'bold'))
-    start_practice.place(x=450, y=550)
-
-    my_word_list = Button(win, text='My word list',
-                          height=1,
-                          width=12,
-                          font=('Klee', 16, 'bold'))
-    my_word_list.place(x=550, y=50)
+def save_word_into_wordlist(word, definition):
+    global user_wordlist_box_temp
+    user_wordlist_box_temp[word] = definition
 
 
 def practice_option_bunny(Topic):
@@ -469,28 +501,32 @@ def practice_option_bunny(Topic):
     for word in word_have:
         MCQ_count[word] = 0
 
-    option_ask = Label(win, text='Do you want to practice by multiple \n choice quesions or flashcards?',
-                       font=('Klee', 30, 'bold'),
-                       bg='#76D7EA')
-    multiple_choice = Button(win, text='Multiple Choice',
-                             height=3, width=13,
-                             font=('Klee', 25, 'bold'),
-                             bg='#76D7EA',
-                             command=lambda: multiple_display(0))
-    flashcards = Button(win, text='Flashcard',
-                        height=3, width=13,
-                        font=('Klee', 25, 'bold'),
-                        bg='#76D7EA',
-                        command=screen_before_display_flashcard)
-    show_list_box = Button(win, text='Show word list',
-                           height=2, width=13,
-                           font=('Klee', 25, 'bold'),
-                           bg='#76D7EA',
-                           command=lambda: show_word_list('bunny', topic))
-    option_ask.place(x=180, y=100)
-    multiple_choice.place(x=120, y=330)
-    flashcards.place(x=420, y=330)
-    show_list_box.place(x=280, y=480)
+    option_ask = Label(win, text = 'Do you want to practice by multiple \n choice quesions or flashcards?',
+                       font = ('Klee', 30, 'bold'),
+                       bg = '#76D7EA')
+    
+    multiple_choice = Button(win, text = 'Multiple Choice',
+                             height = 3, width = 13,
+                             font = ('Klee', 25, 'bold'),
+                             bg = '#76D7EA',
+                             command = lambda: multiple_display(0))
+    
+    flashcards = Button(win, text = 'Flashcard',
+                        height = 3, width = 13,
+                        font = ('Klee', 25, 'bold'),
+                        bg ='#76D7EA',
+                        command = screen_before_display_flashcard)
+    
+    show_list_box = Button(win, text = 'Show word list',
+                           height = 2, width = 13,
+                           font = ('Klee', 25, 'bold'),
+                           bg = '#76D7EA',
+                           command = lambda: show_word_list('bunny', topic))
+    
+    option_ask.place(x = 180, y = 100)
+    multiple_choice.place(x = 120, y = 330)
+    flashcards.place(x = 420, y = 330)
+    show_list_box.place(x = 280, y = 480)
 
     back_button(topic_choice_log_in)
 
@@ -498,23 +534,58 @@ def practice_option_bunny(Topic):
 def practice_option_mywordlist():
     bunny.bunny_ask()
 
-    option_ask = Label(win, text='Do you want to practice by multiple \n choice quesions or flashcards?',
-                       font=('Klee', 30, 'bold'),
-                       bg='#76D7EA')
-    option_ask.place(x=180, y=100)
+    global user_wordlist_box_temp 
 
-    multiple_choice = Button(win, text='Multiple Choice',
-                             height=3, width=13,
-                             font=('Klee', 25, 'bold'),
-                             bg='#76D7EA',
-                             command=lambda: multiple_question(topic_choose))
-    flashcards = Button(win, text='Flashcard',
-                        height=3, width=13,
-                        font=('Klee', 25, 'bold'),
-                        bg='#76D7EA',
-                        command=lambda: flashcard_display(0))
+    # if len(user_wordlist_box_temp[user]) == 0:
+    #     print(0)
+    #     if (messagebox.askquestion(title = 'Error', message = 'You do not have any words. \n Do you want to add?')) == 'yes':
+    #         add_words()
+    #         print(1)
+            
+    #     else:
+    #         after_enter_log_in_screen()
 
-    back_button(new_or_old_practice)
+    if len(user_wordlist_box_temp) == 0:
+        bunny.bunny_ask()
+
+        inform = Label(win, text = 'You do not have any words. \n Do you want to add?', 
+                        font = ('Klee', 40, 'bold'),
+                        bg = '#76D7EA')
+
+        yes_button = Button(win, text = 'Yes', font = ('Klee', 20, 'bold'), 
+                            width = 10, height = 3,
+                            command = add_words)
+
+        no_button = Button(win, text = 'No', font = ('Klee', 20, 'bold'), 
+                            width = 10, height = 3,
+                            command = after_enter_log_in_screen)
+        
+        inform.place(x = 180, y = 100)
+        yes_button.place(x = 120, y = 330)
+        no_button.place(x = 420, y = 330)
+
+    else:
+        option_ask = Label(win, text = 'Do you want to practice by multiple \n choice quesions or flashcards?',
+                        font = ('Klee', 30, 'bold'),
+                        bg = '#76D7EA')
+        
+        multiple_choice = Button(win, text = 'Multiple Choice',
+                                height = 3, width = 13,
+                                font = ('Klee', 25, 'bold'),
+                                bg = '#76D7EA',
+                                command = lambda: multiple_question(topic_choose, 0))
+        
+        flashcards = Button(win, text = 'Flashcard',
+                            height = 3, width = 13,
+                            font = ('Klee', 25, 'bold'),
+                            bg = '#76D7EA',
+                            command = lambda: flashcard_display(0))
+        
+        option_ask.place(x = 180, y = 100)
+        multiple_choice.place(x = 120, y = 330)
+        flashcards.place(x = 420, y = 330)
+
+        back_button(new_or_old_practice)
 
 #########################################################################
 
@@ -525,10 +596,10 @@ def back_button(screenBack):
     back_resize = back.resize((100, 80), Image.LANCZOS)
     new_back = ImageTk.PhotoImage(back_resize)
 
-    back_button = Label(win, image=new_back, bg='#76D7EA')
+    back_button = Label(win, image = new_back, bg = '#76D7EA')
 
     back_button.bind('<Button>', lambda e: button_event(screenBack))
-    back_button.place(x=30, y=670)
+    back_button.place(x = 30, y = 670)
     back_button.image = new_back
 
 
@@ -538,10 +609,10 @@ def next_button(screenNext):
     next_resize = next.resize((100, 80), Image.LANCZOS)
     new_next = ImageTk.PhotoImage(next_resize)
 
-    next_button = Label(win, image=new_next, bg='#76D7EA')
+    next_button = Label(win, image = new_next, bg = '#76D7EA')
 
     next_button.bind('<Button>', lambda e: button_event(screenNext))
-    next_button.place(x=650, y=670)
+    next_button.place(x = 650, y = 670)
     next_button.image = new_next
 
 
@@ -550,10 +621,10 @@ def exit_button(screenExit):
     exit_resize = exit.resize((60, 60), Image.LANCZOS)
     exit_new = ImageTk.PhotoImage(exit_resize)
 
-    exit_button = Label(win, image=exit_new, bg='#76D7EA')
+    exit_button = Label(win, image = exit_new, bg = '#76D7EA')
 
     exit_button.bind('<Button>', lambda e: button_event(screenExit))
-    exit_button.place(x=20, y=10)
+    exit_button.place(x = 20, y = 10)
     exit_button.image = exit_new
 
 
@@ -574,10 +645,10 @@ def multiple_display(multiple_number):
 def multiple_question(word, multiple_number):
     bunny.bunny_ask()
 
-    ques_ask = Label(win, text=f"Question {multiple_number + 1}: What is the meaning of \n '{word}'?",
-                     font=('Klee', 30, 'bold'),
-                     bg='#76D7EA')
-    ques_ask.place(x=180, y=100)
+    ques_ask = Label(win, text = f"Question {multiple_number + 1}: What is the meaning of \n '{word}'?",
+                     font = ('Klee', 30, 'bold'),
+                     bg = '#76D7EA')
+    ques_ask.place(x = 180, y = 100)
 
     random_abcd(multiple_number)
 
@@ -613,32 +684,34 @@ def random_abcd(multiple_number):
 
     list_button = []
     for i in range(4):
-        button = Button(win, text=f'{ans[i]}. {random_answer[i]}', height=2, width=60,
-                        font=('Klee', 16, 'bold'),
-                        bg='#76D7EA',
-                        anchor='w')
+        button = Button(win, text = f'{ans[i]}. {random_answer[i]}', height = 2, width = 60,
+                        font = ('Klee', 16, 'bold'),
+                        bg = '#76D7EA',
+                        anchor = 'w')
         list_button.append(button)
         if i == correct_letter:
-            list_button[i].config(command=lambda button=list_button[i], color='green', list=list_button, num=multiple_number: change_color_button(
+            list_button[i].config(command = lambda button = list_button[i], color = 'green', list = list_button, num = multiple_number: change_color_button(
                 button, color, list, num))
         else:
-            list_button[i].config(command=lambda button=list_button[i], color='red', list=list_button, num=multiple_number: change_color_button(
+            list_button[i].config(command = lambda button = list_button[i], color = 'red', list = list_button, num = multiple_number: change_color_button(
                 button, color, list, num))
 
-    list_button[0].place(x=120, y=310)
-    list_button[1].place(x=120, y=390)
-    list_button[2].place(x=120, y=470)
-    list_button[3].place(x=120, y=550)
+    list_button[0].place(x = 120, y = 310)
+    list_button[1].place(x = 120, y = 390)
+    list_button[2].place(x = 120, y = 470)
+    list_button[3].place(x = 120, y = 550)
 
 
 def change_color_button(button, color, button_list, multiple_number):
-    button.config(fg=color)
+    button.config(fg = color)
     for Button in button_list:
         if Button != button:
-            Button.config(state=DISABLED)
+            Button.config(state = DISABLED)
+
     global word_have, bunny_wordlist_box, user, topic
     if MCQ_count[word_have[multiple_number]] == 0:
         MCQ_count[word_have[multiple_number]] = 1
+
         if color == 'green':
             box = bunny_wordlist_box[user][topic][word_have[multiple_number]]
             if box < 4:
@@ -647,6 +720,7 @@ def change_color_button(button, color, button_list, multiple_number):
             box = bunny_wordlist_box[user][topic][word_have[multiple_number]]
             if box > 0:
                 bunny_wordlist_box[user][topic][word_have[multiple_number]] -= 1
+
     if multiple_number != len(word_have) - 1:
         next_button(lambda: multiple_display((multiple_number + 1)))
 
@@ -657,16 +731,17 @@ def screen_before_display_flashcard():
     for widgets in win.winfo_children():
         widgets.destroy()
     if len(word_have) != 0:
-        option_ask = Label(win, text='Today, you have ' + str(len(word_have)) + ' words to review',
-                           font=('Klee', 30, 'bold'),
-                           bg='#76D7EA')
-        option_ask.place(x=180, y=100)
+        option_ask = Label(win, text = 'Today, you have ' + str(len(word_have)) + ' words to review',
+                           font = ('Klee', 30, 'bold'),
+                           bg = '#76D7EA')
+        option_ask.place(x = 180, y = 100)
         next_button(lambda: flashcard_display(0))
+
     else:
-        option_ask = Label(win, text='Today, you have no word to review. Do you want to review all of the words again?',
-                           font=('Klee', 30, 'bold'),
-                           bg='#76D7EA')
-        option_ask.place(x=180, y=100)
+        option_ask = Label(win, text = 'Today, you have no word to review. Do you want to review all of the words again?',
+                           font = ('Klee', 30, 'bold'),
+                           bg = '#76D7EA')
+        option_ask.place(x = 180, y = 100)
         next_button(lambda: flashcard_display(0))
 
 
@@ -684,13 +759,13 @@ def flashcard_display(flashcard_number):
 
 
 def flashcard_frame_word(word, flashcard_number):
-    flashcard_frame = Button(win, text=word,
-                             font=('Klee', 20, 'bold'),
-                             height=10,
-                             width=40,
-                             bg='white',
-                             command=lambda: flashcard_frame_definition(word, flashcard_number))
-    flashcard_frame.place(x=135, y=150)
+    flashcard_frame = Button(win, text = word,
+                             font = ('Klee', 20, 'bold'),
+                             height = 10,
+                             width = 40,
+                             bg = 'white',
+                             command = lambda: flashcard_frame_definition(word, flashcard_number))
+    flashcard_frame.place(x = 135, y = 150)
 
     show_word_number(flashcard_number + 1)
 
@@ -699,7 +774,6 @@ def flashcard_frame_word(word, flashcard_number):
     back_flashcard_number = flashcard_number - 1
     if back_flashcard_number <= 0:
         back_flashcard_number = 0
-    # back_button(lambda: flashcard_display(back_flashcard_number))
 
     exit_button(topic_choice_log_in)
 
@@ -708,13 +782,13 @@ def flashcard_frame_definition(word, flashcard_number):
     for widgets in win.winfo_children():
         widgets.destroy()
 
-    flashcard_frame = Button(win, text=f'Definition: \n {topic_choose[word]}',
-                             font=('Klee', 20, 'bold'),
-                             height=10,
-                             width=40,
-                             bg='white',
-                             command=lambda: flashcard_frame_word(word, flashcard_number))
-    flashcard_frame.place(x=135, y=150)
+    flashcard_frame = Button(win, text = f'Definition: \n {topic_choose[word]}',
+                             font = ('Klee', 20, 'bold'),
+                             height = 10,
+                             width = 40,
+                             bg = 'white',
+                             command = lambda: flashcard_frame_word(word, flashcard_number))
+    flashcard_frame.place(x = 135, y = 150)
 
     show_word_number(flashcard_number + 1)
 
@@ -723,15 +797,13 @@ def flashcard_frame_definition(word, flashcard_number):
     back_flashcard_number = flashcard_number - 1
     if back_flashcard_number <= 0:
         back_flashcard_number = 0
-    # back_button(lambda: flashcard_frame_word(
-    #     word_have[back_flashcard_number], back_flashcard_number))
 
     exit_button(topic_choice_log_in)
 
 
 def flashcard_score(flashcard_number):
     global bunny_wordlist_box, user, topic, word_have
-    if (messagebox.askyesno(title='Next?', message='Are you sure you know this word?')):
+    if (messagebox.askyesno(title = 'Next?', message='Are you sure you know this word?')):
         time = bunny_wordlist_box[user][topic][word_have[flashcard_number]]
         if time < 4:
             bunny_wordlist_box[user][topic][word_have[flashcard_number]] += 1
@@ -744,10 +816,10 @@ def flashcard_score(flashcard_number):
 
 
 def show_word_number(flashcard_number):
-    current_word = Label(win, text=f'Word: {flashcard_number}',
-                         font=('Klee', 20, 'bold'),
-                         bg='#76D7EA')
-    current_word.place(x=650, y=50)
+    current_word = Label(win, text = f'Word: {flashcard_number}',
+                         font = ('Klee', 20, 'bold'),
+                         bg = '#76D7EA')
+    current_word.place(x = 650, y = 50)
 
 #########################################################################
 
@@ -756,8 +828,8 @@ def show_word_list(bunny_or_user, topic):
     for widgets in win.winfo_children():
         widgets.destroy()
 
-    my_list_box = Listbox(win, width=60, height=17, font=('Klee', 20, 'bold'))
-    my_list_box.place(x=30, y=30)
+    my_list_box = Listbox(win, width = 60, height = 17, font = ('Klee', 20, 'bold'))
+    my_list_box.place(x = 30, y = 30)
 
     global topic_choose
     i = 1
@@ -777,7 +849,7 @@ class Closing():
     def on_closing(self):
         global bunny_wordlist_box, user_wordlist_box, user_checkin_count, bunny_wordlist_box_temp, user_wordlist_box_temp
         # Message box asks the users if they want to quit
-        if messagebox.askyesno(title='Quit?', message='Do you want to save your progress before quitting?'):
+        if messagebox.askyesno(title = 'Quit?', message = 'Do you want to save your progress before quitting?'):
             write_json('bunny_wordlist_box.json', bunny_wordlist_box)
             write_json('user_wordlist_box.json', user_wordlist_box)
             write_json('user_checkin_count.json', user_checkin_count)
@@ -792,3 +864,4 @@ class Closing():
         # mixer.music.stop()
 mainScreen()
 Closing()
+win.mainloop()
