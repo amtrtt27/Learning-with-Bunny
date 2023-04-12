@@ -12,5 +12,46 @@
       "Self-catering": 0,
       "Charter flight": 0
     }
-  }
+  },
+  "a": {
+    "Job": {
+      "Employee": 4,
+      "Employer": 0,
+      "Occupation": 4,
+      "Resign": 4,
+      "Overtime": 4,
+      "Shift": 4,
+      "Commute": 4,
+      "Candidate": 4,
+      "Employment": 4,
+      "Start-up": 4
+    }
+  },
+  "b": {
+    "Education": {
+      "Literacy": 0,
+      "Kindergarten": 0,
+      "Lecture": 0,
+      "Principal": 0,
+      "Thesis": 0,
+      "Pedagogy": 0,
+      "Tuition": 0,
+      "Assignment": 0,
+      "Curriculum": 0,
+      "Gap year": 0
+    },
+    "Environment": {
+      "Fauna": 0,
+      "Flora": 0,
+      "Local wildlife": 0,
+      "Diverse": 0,
+      "Biodiversity": 0,
+      "Habitat": 0,
+      "To adapt": 0,
+      "To evolve": 0,
+      "Thrive": 0,
+      "Nocturnal": 0
+    }
+  },
+  "c": {}
 }
