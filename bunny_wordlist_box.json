@@ -51,7 +51,71 @@
       "To evolve": 0,
       "Thrive": 0,
       "Nocturnal": 0
+    },
+    "Job": {
+      "Employee": 0,
+      "Employer": 0,
+      "Occupation": 0,
+      "Resign": 1,
+      "Overtime": 0,
+      "Shift": 0,
+      "Commute": 0,
+      "Candidate": 0,
+      "Employment": 0,
+      "Start-up": 0
+    },
+    "Tourism": {
+      "Craft markets": 0,
+      "Get around": 0,
+      "Scenic views": 1,
+      "Out of season": 1,
+      "Long-haul flights": 0,
+      "Lush rainforests": 0,
+      "Accommodation": 0,
+      "All holiday": 0,
+      "Self-catering": 0,
+      "Charter flight": 0
     }
   },
-  "c": {}
+  "c": {},
+  "tram": {
+    "Job": {
+      "Employee": 0,
+      "Employer": 0,
+      "Occupation": 0,
+      "Resign": 0,
+      "Overtime": 0,
+      "Shift": 0,
+      "Commute": 0,
+      "Candidate": 0,
+      "Employment": 0,
+      "Start-up": 0
+    }
+  },
+  "Tram": {
+    "Job": {
+      "Employee": 0,
+      "Employer": 0,
+      "Occupation": 0,
+      "Resign": 0,
+      "Overtime": 1,
+      "Shift": 0,
+      "Commute": 0,
+      "Candidate": 0,
+      "Employment": 0,
+      "Start-up": 0
+    },
+    "Tourism": {
+      "Craft markets": 0,
+      "Get around": 0,
+      "Scenic views": 0,
+      "Out of season": 0,
+      "Long-haul flights": 1,
+      "Lush rainforests": 0,
+      "Accommodation": 1,
+      "All holiday": 0,
+      "Self-catering": 0,
+      "Charter flight": 0
+    }
+  }
 }

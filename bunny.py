@@ -177,6 +177,7 @@ class Username_sign_up_input():
 
         elif self.user_password.get() == '' or self.user_name.get() == '':
             warning_message('Password or username can not be empty')
+        
         else:
             user_data[self.user_name.get()] = self.user_password.get()
             write_json('user_data.json', user_data)
@@ -295,8 +296,7 @@ def after_enter_sign_up_screen():
 
 
 def topic_choice_sign_up():
-    # for widgets in win.winfo_children():
-    #     widgets.destroy()
+    
     bunny.bunny_ask()
 
     topic_ask = Label(win, text='Choose your topic!!!',
@@ -363,8 +363,7 @@ def after_enter_log_in_screen():
 
 
 def topic_choice_log_in():
-    # for widgets in win.winfo_children():
-    #     widgets.destroy()
+
     bunny.bunny_ask()
 
     topic_ask = Label(win, text='Choose your topic!!!',
@@ -401,6 +400,7 @@ def topic_choice_log_in():
 
 
 def new_or_old_practice():
+
     for widgets in win.winfo_children():
         widgets.destroy()
 
@@ -467,7 +467,8 @@ def add_words():
     my_word_list = Button(win, text='My word list',
                           height=1,
                           width=12,
-                          font=('Klee', 16, 'bold'))
+                          font=('Klee', 16, 'bold'),
+                          command=show_word_list('user', topic_choose))
 
     word.place(x=100, y=200)
     definition.place(x=100, y=300)
@@ -484,10 +485,12 @@ def add_words():
 
 
 def save_word_into_wordlist(word, button, definition):
-    global user_wordlist, user, user_wordlist_box
+    global user_wordlist, user, user_wordlist_box, topic_choose
     if word not in user_wordlist[user]:
         user_wordlist[user][word] = definition
         user_wordlist_box[user][word] = 0
+        
+        topic_choose[word] = definition
     else:
         warning_message(
             "You have added that word already. Please go to user_wordlist.json to verify it.")
@@ -552,8 +555,7 @@ def practice_option_bunny(Topic):
 
 
 def practice_option_mywordlist():
-    # for widgets in win.winfo_children():
-    #     widgets.destroy()
+    
     bunny.bunny_ask()
 
     global user_wordlist
@@ -778,6 +780,7 @@ def change_color_button(button, color, button_list, multiple_number, definition,
 def screen_before_display_flashcard(option):
     for widgets in win.winfo_children():
         widgets.destroy()
+    
     if len(word_have) != 0:
         option_ask = Label(win, text='Today, you have ' + str(len(word_have)) + ' words to review',
                            font=('Klee', 30, 'bold'),
@@ -823,10 +826,6 @@ def flashcard_frame_word(word, flashcard_number, option):
     show_word_number(flashcard_number + 1)
 
     next_button(lambda: flashcard_score(flashcard_number, option))
-
-    back_flashcard_number = flashcard_number - 1
-    if back_flashcard_number <= 0:
-        back_flashcard_number = 0
 
     if option == 'bunny':
         exit_button(topic_choice_log_in)
@@ -908,6 +907,8 @@ def show_word_list(bunny_or_user, topic):
 
     if bunny_or_user == 'bunny':
         back_button(lambda: practice_option_bunny(topic))
+    else:
+        back_button(practice_option_mywordlist)
 
 
 class Closing():
