@@ -177,7 +177,7 @@ class Username_sign_up_input():
 
         elif self.user_password.get() == '' or self.user_name.get() == '':
             warning_message('Password or username can not be empty')
-        
+
         else:
             user_data[self.user_name.get()] = self.user_password.get()
             write_json('user_data.json', user_data)
@@ -296,7 +296,7 @@ def after_enter_sign_up_screen():
 
 
 def topic_choice_sign_up():
-    
+
     bunny.bunny_ask()
 
     topic_ask = Label(win, text='Choose your topic!!!',
@@ -468,7 +468,7 @@ def add_words():
                           height=1,
                           width=12,
                           font=('Klee', 16, 'bold'),
-                          command=show_word_list('user', topic_choose))
+                          command=lambda: show_word_list('user', ''))
 
     word.place(x=100, y=200)
     definition.place(x=100, y=300)
@@ -489,7 +489,7 @@ def save_word_into_wordlist(word, button, definition):
     if word not in user_wordlist[user]:
         user_wordlist[user][word] = definition
         user_wordlist_box[user][word] = 0
-        
+
         topic_choose[word] = definition
     else:
         warning_message(
@@ -555,7 +555,7 @@ def practice_option_bunny(Topic):
 
 
 def practice_option_mywordlist():
-    
+
     bunny.bunny_ask()
 
     global user_wordlist
@@ -780,7 +780,7 @@ def change_color_button(button, color, button_list, multiple_number, definition,
 def screen_before_display_flashcard(option):
     for widgets in win.winfo_children():
         widgets.destroy()
-    
+
     if len(word_have) != 0:
         option_ask = Label(win, text='Today, you have ' + str(len(word_have)) + ' words to review',
                            font=('Klee', 30, 'bold'),
@@ -899,11 +899,19 @@ def show_word_list(bunny_or_user, topic):
     my_list_box = Listbox(win, width=60, height=17, font=('Klee', 20, 'bold'))
     my_list_box.place(x=30, y=30)
 
-    global topic_choose
-    i = 1
-    for word in topic_choose:
-        my_list_box.insert(END, f'{i}. {word}: {topic_choose[word]}')
-        i += 1
+    if bunny_or_user == 'bunny':
+        global topic_choose
+        i = 1
+        for word in topic_choose:
+            my_list_box.insert(END, f'{i}. {word}: {topic_choose[word]}')
+            i += 1
+    else:
+        global user_wordlist, user
+        i = 1
+        for word in user_wordlist[user]:
+            my_list_box.insert(
+                END, f'{i}. {word}: {user_wordlist[user][word]}')
+            i += 1
 
     if bunny_or_user == 'bunny':
         back_button(lambda: practice_option_bunny(topic))
@@ -932,7 +940,6 @@ class Closing():
             write_json('user_wordlist.json', user_wordlist_temp)
         # Time.sleep(.5)
         win.destroy()
-
 
         # mixer.music.stop()
 mainScreen()
