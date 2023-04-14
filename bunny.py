@@ -916,7 +916,7 @@ def show_word_list(bunny_or_user, topic):
     if bunny_or_user == 'bunny':
         back_button(lambda: practice_option_bunny(topic))
     else:
-        back_button(practice_option_mywordlist)
+        back_button(new_or_old_practice)
 
 
 class Closing():
