@@ -15,16 +15,16 @@
   },
   "a": {
     "Job": {
-      "Employee": 4,
-      "Employer": 0,
-      "Occupation": 4,
-      "Resign": 4,
-      "Overtime": 4,
-      "Shift": 4,
-      "Commute": 4,
-      "Candidate": 4,
-      "Employment": 4,
-      "Start-up": 4
+      "Employee": 1,
+      "Employer": 1,
+      "Occupation": 1,
+      "Resign": 1,
+      "Overtime": 1,
+      "Shift": 1,
+      "Commute": 1,
+      "Candidate": 1,
+      "Employment": 1,
+      "Start-up": 1
     }
   },
   "b": {
