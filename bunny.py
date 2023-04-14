@@ -415,8 +415,7 @@ def new_or_old_practice():
                                   font=('Klee', 16, 'bold'),
                                   bg='#76D7EA',
                                   command=practice_option_mywordlist)
-    keep_practice_button.place(x=300, y=450)
-
+    
     add_new_words = Button(win, text='Add new words ', height=1,
                            width=12,
                            font=('Klee', 16, 'bold'),
@@ -424,6 +423,7 @@ def new_or_old_practice():
                            command=add_words)
 
     new_or_old_practice.place(x=240, y=250)
+    keep_practice_button.place(x=300, y=450)
     add_new_words.place(x=500, y=450)
 
     keep_practice_button.config(state=DISABLED)
@@ -483,7 +483,9 @@ def add_words():
     if len(user_wordlist[user]) != 0:
         save_button.config(state=NORMAL)
 
-
+    back_button(new_or_old_practice)
+    next_button(add_words)
+    
 def save_word_into_wordlist(word, button, definition):
     global user_wordlist, user, user_wordlist_box, topic_choose
     if word not in user_wordlist[user]:
@@ -493,7 +495,7 @@ def save_word_into_wordlist(word, button, definition):
         topic_choose[word] = definition
     else:
         warning_message(
-            "You have added that word already. Please go to user_wordlist.json to verify it.")
+            "You have added that word already.")
     button.config(state=NORMAL)
 
 
@@ -915,6 +917,7 @@ def show_word_list(bunny_or_user, topic):
 
     if bunny_or_user == 'bunny':
         back_button(lambda: practice_option_bunny(topic))
+    
     else:
         back_button(practice_option_mywordlist)
 
@@ -938,9 +941,11 @@ class Closing():
             write_json('user_wordlist_box.json', user_wordlist_box_temp)
             write_json('user_checkin_count.json', user_checkin_count_temp)
             write_json('user_wordlist.json', user_wordlist_temp)
+        
         # Time.sleep(.5)
         win.destroy()
 
         # mixer.music.stop()
+
 mainScreen()
 Closing()

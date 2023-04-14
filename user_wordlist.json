@@ -1,3 +1,10 @@
 {
-  "Tram": {}
+  "Tram": {},
+  "Phuc": {
+    "hi": "greet"
+  },
+  "nobita": {
+    "hi": "hi"
+  },
+  "Pika": {}
 }

@@ -117,5 +117,21 @@
       "Self-catering": 0,
       "Charter flight": 0
     }
-  }
+  },
+  "Phuc": {
+    "Job": {
+      "Employee": 0,
+      "Employer": 0,
+      "Occupation": 0,
+      "Resign": 0,
+      "Overtime": 0,
+      "Shift": 0,
+      "Commute": 0,
+      "Candidate": 1,
+      "Employment": 0,
+      "Start-up": 0
+    }
+  },
+  "nobita": {},
+  "Pika": {}
 }
