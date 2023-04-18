@@ -1,0 +1,151 @@
+{
+  "th": {
+    "Job": {
+      "Employee": 1,
+      "Employer": 1,
+      "Occupation": 1,
+      "Resign": 1,
+      "Overtime": 1,
+      "Shift": 1,
+      "Commute": 1,
+      "Candidate": 1,
+      "Employment": 1,
+      "Start-up": 1
+    }
+  },
+  "abc": {},
+  "hihi": {},
+  "Thao": {
+    "Environment": {
+      "Fauna": 1,
+      "Flora": 0,
+      "Local wildlife": 0,
+      "Diverse": 0,
+      "Biodiversity": 0,
+      "Habitat": 0,
+      "To adapt": 0,
+      "To evolve": 0,
+      "Thrive": 0,
+      "Nocturnal": 0
+    },
+    "Education": {
+      "Literacy": 0,
+      "Kindergarten": 0,
+      "Lecture": 0,
+      "Principal": 0,
+      "Thesis": 0,
+      "Pedagogy": 0,
+      "Tuition": 0,
+      "Assignment": 0,
+      "Curriculum": 0,
+      "Gap year": 1
+    }
+  },
+  "bun": {},
+  "Tran Tram": {},
+  "Tram Tran": {},
+  "tram_tran": {},
+  "peekaboo": {
+    "Job": {
+      "Employee": 1,
+      "Employer": 1,
+      "Occupation": 1,
+      "Resign": 2,
+      "Overtime": 1,
+      "Shift": 1,
+      "Commute": 2,
+      "Candidate": 1,
+      "Employment": 1,
+      "Start-up": 1
+    },
+    "Environment": {
+      "Fauna": 0,
+      "Flora": 0,
+      "Local wildlife": 0,
+      "Diverse": 0,
+      "Biodiversity": 0,
+      "Habitat": 0,
+      "To adapt": 0,
+      "To evolve": 0,
+      "Thrive": 0,
+      "Nocturnal": 0
+    },
+    "Tourism": {
+      "Craft markets": 0,
+      "Get around": 0,
+      "Scenic views": 0,
+      "Out of season": 0,
+      "Long-haul flights": 0,
+      "Lush rainforests": 0,
+      "Accommodation": 0,
+      "All holiday": 0,
+      "Self-catering": 0,
+      "Charter flight": 0
+    },
+    "Education": {
+      "Literacy": 0,
+      "Kindergarten": 0,
+      "Lecture": 0,
+      "Principal": 0,
+      "Thesis": 0,
+      "Pedagogy": 0,
+      "Tuition": 0,
+      "Assignment": 0,
+      "Curriculum": 0,
+      "Gap year": 0
+    }
+  },
+  "aaaa": {
+    "Job": {
+      "Employee": 1,
+      "Employer": 1,
+      "Occupation": 1,
+      "Resign": 1,
+      "Overtime": 1,
+      "Shift": 1,
+      "Commute": 1,
+      "Candidate": 1,
+      "Employment": 1,
+      "Start-up": 1
+    },
+    "Environment": {
+      "Fauna": 0,
+      "Flora": 0,
+      "Local wildlife": 0,
+      "Diverse": 0,
+      "Biodiversity": 0,
+      "Habitat": 0,
+      "To adapt": 0,
+      "To evolve": 0,
+      "Thrive": 0,
+      "Nocturnal": 0
+    }
+  },
+  "llollz": {},
+  "noor.nik04": {
+    "Tourism": {
+      "Craft markets": 1,
+      "Get around": 1,
+      "Scenic views": 1,
+      "Out of season": 0,
+      "Long-haul flights": 1,
+      "Lush rainforests": 1,
+      "Accommodation": 1,
+      "All holiday": 0,
+      "Self-catering": 1,
+      "Charter flight": 1
+    },
+    "Education": {
+      "Literacy": 0,
+      "Kindergarten": 1,
+      "Lecture": 0,
+      "Principal": 0,
+      "Thesis": 0,
+      "Pedagogy": 1,
+      "Tuition": 0,
+      "Assignment": 0,
+      "Curriculum": 0,
+      "Gap year": 0
+    }
+  }
+}
