@@ -36,10 +36,10 @@ win.config(background='#76D7EA')
 #########################################################################
 
 # Import music
-# mixer.init()
-# mixer.music.load('bunnySound.mp3')
-# mixer.music.set_volume(0.1)
-# mixer.music.play(-1)
+mixer.init()
+mixer.music.load('bunnySound.mp3')
+mixer.music.set_volume(0.1)
+mixer.music.play(-1)
 
 ########################################################################
 
@@ -74,6 +74,7 @@ def mainScreen():
         widgets.destroy()
 
     bunny.background_draw()
+    bunny.shark_draw()
 
     log_in = Button(win, text='Log In', height=1, width=10,
                     font=('Klee', 20, 'bold'),
@@ -117,6 +118,18 @@ class Draw_bunny():
         self.image_Label.image = self.new_image
         self.image_Label.place(relx=0.2, rely=0.25, anchor='e')
 
+    def shark_draw(self):
+        x_Coordinate = 20
+        y_Coordinate = 670
+        for i in range(8):
+            self.img = Image.open('image/shark.png')
+            self.img_resize = self.img.resize((70, 70), Image.LANCZOS)
+            self.new_image = ImageTk.PhotoImage(self.img_resize)
+            self.image_label = Label(win, image=self.new_image, bg='#76D7EA')
+            self.image_label.image = self.new_image
+            self.image_label.place(x=x_Coordinate, y=y_Coordinate)
+            x_Coordinate += 100
+    
 
 bunny = Draw_bunny()
 
@@ -125,6 +138,8 @@ class Username_sign_up_input():
     def __init__(self):
         for widgets in win.winfo_children():
             widgets.destroy()
+
+        bunny.shark_draw()
 
         self.user_name_label = Label(win, text='Username:',
                                      font=('Klee', 20, 'bold'),
@@ -201,6 +216,8 @@ class Username_log_in_input():
     def __init__(self):
         for widgets in win.winfo_children():
             widgets.destroy()
+        
+        bunny.shark_draw()
 
         self.user_name_label = Label(win, text='Username:',
                                      font=('Klee', 20, 'bold'),
@@ -273,6 +290,7 @@ def after_enter_sign_up_screen():
         widgets.destroy()
 
     bunny.background_draw()
+    bunny.shark_draw()
 
     practice_or_not = Label(win, text='''Do you want to use Bunny's wordlist \n or create your own?''',
                             font=('Klee', 30, 'bold'),
@@ -298,6 +316,7 @@ def after_enter_sign_up_screen():
 def topic_choice_sign_up():
 
     bunny.bunny_ask()
+    bunny.shark_draw()
 
     topic_ask = Label(win, text='Choose your topic!!!',
                       font=('Klee', 50, 'bold'),
@@ -340,7 +359,7 @@ def after_enter_log_in_screen():
         widgets.destroy()
 
     bunny.background_draw()
-
+    bunny.shark_draw()
     create_or_bunny = Label(win, text="Do you want to use \n Bunny's wordlist or yours?",
                             font=('Klee', 30, 'bold'),
                             bg='#76D7EA')
@@ -365,7 +384,7 @@ def after_enter_log_in_screen():
 def topic_choice_log_in():
 
     bunny.bunny_ask()
-
+    bunny.shark_draw()
     topic_ask = Label(win, text='Choose your topic!!!',
                       font=('Klee', 50, 'bold'),
                       bg='#76D7EA')
@@ -404,6 +423,7 @@ def new_or_old_practice():
     for widgets in win.winfo_children():
         widgets.destroy()
 
+    bunny.shark_draw()
     bunny.background_draw()
 
     new_or_old_practice = Label(win, text='''Do you want to keep practicing \n or add new words?''',
@@ -439,7 +459,7 @@ def new_or_old_practice():
 def add_words():
     for widgets in win.winfo_children():
         widgets.destroy()
-
+    bunny.shark_draw()
     word = Label(win, text='Word:',
                  font=('Klee', 20, 'bold'),
                  bg='#76D7EA')
@@ -485,7 +505,8 @@ def add_words():
 
     back_button(new_or_old_practice)
     next_button(add_words)
-    
+
+
 def save_word_into_wordlist(word, button, definition):
     global user_wordlist, user, user_wordlist_box, topic_choose
     if word not in user_wordlist[user]:
@@ -501,7 +522,7 @@ def save_word_into_wordlist(word, button, definition):
 
 def practice_option_bunny(Topic):
     bunny.bunny_ask()
-
+    bunny.shark_draw()
     global topic_choose, word_have, flashcard_score_get, bunny_wordlist_box, user, topic, word_have_mcq, MCQ_count
     topic = Topic
     topic_choose = {}
@@ -557,7 +578,7 @@ def practice_option_bunny(Topic):
 
 
 def practice_option_mywordlist():
-
+    bunny.shark_draw()
     bunny.bunny_ask()
 
     global user_wordlist
@@ -631,7 +652,7 @@ def back_button(screenBack):
     back_button = Label(win, image=new_back, bg='#76D7EA')
 
     back_button.bind('<Button>', lambda e: button_event(screenBack))
-    back_button.place(x=30, y=670)
+    back_button.place(x=20, y=670)
     back_button.image = new_back
 
 
@@ -644,7 +665,7 @@ def next_button(screenNext):
     next_button = Label(win, image=new_next, bg='#76D7EA')
 
     next_button.bind('<Button>', lambda e: button_event(screenNext))
-    next_button.place(x=650, y=670)
+    next_button.place(x=700, y=670)
     next_button.image = new_next
 
 
@@ -693,6 +714,7 @@ def multiple_question(word, multiple_number, definition, option):
     else:
         exit_button(practice_option_mywordlist)
 
+    bunny.shark_draw()
 
 def random_abcd(word, multiple_number, definition, option):
 
@@ -783,24 +805,28 @@ def screen_before_display_flashcard(option):
     for widgets in win.winfo_children():
         widgets.destroy()
 
+    bunny.shark_draw()
     if len(word_have) != 0:
-        option_ask = Label(win, text='Today, you have ' + str(len(word_have)) + ' words to review',
+        option_ask = Label(win, text='Today, you have ' + str(len(word_have)) + ' word(s) to review',
                            font=('Klee', 30, 'bold'),
                            bg='#76D7EA')
-        option_ask.place(x=180, y=100)
+        option_ask.place(x=120, y=300)
         next_button(lambda: flashcard_display(0, option))
 
     else:
-        option_ask = Label(win, text='Today, you have no word to review. Do you want to review all of the words again?',
+        option_ask = Label(win, text='Today, you have no word to review. \n Do you want to review all of the words again?',
                            font=('Klee', 30, 'bold'),
                            bg='#76D7EA')
-        option_ask.place(x=180, y=100)
+        option_ask.place(x=100, y=300)
         next_button(lambda: flashcard_display(0, option))
+        back_button(topic_choice_log_in)
 
 
 def flashcard_display(flashcard_number, option):
     for widgets in win.winfo_children():
         widgets.destroy()
+
+    bunny.shark_draw()
 
     global word_have, topic_choose, user_wordlist
 
@@ -817,6 +843,7 @@ def flashcard_display(flashcard_number, option):
 
 
 def flashcard_frame_word(word, flashcard_number, option):
+    bunny.shark_draw()
     flashcard_frame = Button(win, text=word,
                              font=('Klee', 20, 'bold'),
                              height=10,
@@ -827,7 +854,7 @@ def flashcard_frame_word(word, flashcard_number, option):
 
     show_word_number(flashcard_number + 1)
 
-    next_button(lambda: flashcard_score(flashcard_number, option))
+    next_button(lambda: user_score(flashcard_number, option))
 
     if option == 'bunny':
         exit_button(topic_choice_log_in)
@@ -836,9 +863,10 @@ def flashcard_frame_word(word, flashcard_number, option):
 
 
 def flashcard_frame_definition(word, flashcard_number, option):
+    
     for widgets in win.winfo_children():
         widgets.destroy()
-
+    bunny.shark_draw()
     flashcard_frame = Button(win, text=f'Definition: \n {topic_choose[word]}',
                              font=('Klee', 20, 'bold'),
                              height=10,
@@ -849,7 +877,7 @@ def flashcard_frame_definition(word, flashcard_number, option):
 
     show_word_number(flashcard_number + 1)
 
-    next_button(lambda: flashcard_score(flashcard_number, option))
+    next_button(lambda: user_score(flashcard_number, option))
 
     back_flashcard_number = flashcard_number - 1
     if back_flashcard_number <= 0:
@@ -861,7 +889,7 @@ def flashcard_frame_definition(word, flashcard_number, option):
         exit_button(practice_option_mywordlist)
 
 
-def flashcard_score(flashcard_number, option):
+def user_score(flashcard_number, option):
     global bunny_wordlist_box, user, topic, word_have, user_wordlist_box
     if (messagebox.askyesno(title='Next?', message='Are you sure you know this word?')):
         if option == 'bunny':
@@ -882,6 +910,7 @@ def flashcard_score(flashcard_number, option):
             if time > 0:
                 user_wordlist_box[user][word_have[flashcard_number]] -= 1
     next_flashcard_number = (flashcard_number + 1) % len(word_have)
+
     flashcard_display(next_flashcard_number, option)
 
 
@@ -897,7 +926,7 @@ def show_word_number(flashcard_number):
 def show_word_list(bunny_or_user, topic):
     for widgets in win.winfo_children():
         widgets.destroy()
-
+    bunny.shark_draw()
     my_list_box = Listbox(win, width=60, height=17, font=('Klee', 20, 'bold'))
     my_list_box.place(x=30, y=30)
 
@@ -945,7 +974,7 @@ class Closing():
         # Time.sleep(.5)
         win.destroy()
 
-        # mixer.music.stop()
+        mixer.music.stop()
 
 mainScreen()
 Closing()
